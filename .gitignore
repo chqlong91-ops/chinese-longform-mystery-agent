@@ -10,8 +10,8 @@ evals/
 
 # Novel payloads and generated workspaces
 novel-workspaces/
-05-drafts/
-08-manuscript/
+/05-drafts/
+/08-manuscript/
 *.docx
 *.pdf
 
@@ -32,4 +32,3 @@ Thumbs.db
 # PowerShell artifacts
 *.clixml
 *.transcript.txt
-

@@ -6,6 +6,7 @@
 
 - 采用 Apache License 2.0 作为公开发行许可证。
 - 公开发布至 `chqlong91-ops/chinese-longform-mystery-agent`。
+- 修复发布忽略规则，确保新项目初始化所需的三个稿件层占位模板进入版本控制。
 - 冻结 P04 `12/12 yes/evaluated` 产品验收结果。
 - 提供项目初始化器、状态驱动编排器与三级交互运行时。
 - 提供唯一状态、原子事务、生成视图和 Skill-aware recovery v2 核心。
