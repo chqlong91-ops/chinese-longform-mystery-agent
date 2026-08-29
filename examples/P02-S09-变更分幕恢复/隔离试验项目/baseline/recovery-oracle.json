@@ -1,0 +1,12 @@
+{
+  "project_id": "ISO-P02-S09",
+  "active_task": "P02-S09-E09",
+  "active_track": "D",
+  "active_object": "CIR-SIH-ISO-01@v001#F-TIME-01",
+  "current_chapter": "CH02",
+  "manuscript_id": "MS-CH02-FORMAL",
+  "manuscript_version": "v003",
+  "manuscript_layer": "formal",
+  "checkpoint_event_seq": 18,
+  "next_action": "run-propagation-preflight"
+}

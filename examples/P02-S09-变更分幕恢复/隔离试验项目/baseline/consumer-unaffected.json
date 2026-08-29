@@ -1,0 +1,8 @@
+{
+  "id": "CONSUMER-UNAFFECTED",
+  "version": "v001",
+  "scope": "CH03",
+  "design_evaluation": "yes/evaluated",
+  "confirmation": "confirmed",
+  "source": "F-TIME-99@v001#other-event"
+}

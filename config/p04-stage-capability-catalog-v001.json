@@ -1,0 +1,38 @@
+{
+  "catalog_id": "P04-STAGE-CAPABILITY-CATALOG@v001",
+  "stages": {
+    "P01": {
+      "capability_id": "CAP-P01-CASE-DESIGN@v001",
+      "route": "p01-case-design",
+      "primary_skill": "craft-social-mystery",
+      "owner": "p01-controller",
+      "required_context": ["project registry", "project brief", "P01 current near-field evidence"],
+      "forbidden_context": ["full manuscript", "future chapter prose", "other projects", "old chat"],
+      "exit": ["work=completed", "gate=yes/evaluated", "confirmation=confirmed/evaluated", "sync=synced/evaluated"]
+    },
+    "P02": {
+      "capability_id": "CAP-P02-CHAPTER-LOOP@v001",
+      "route": "p02-chapter-production",
+      "primary_skill": "novel-project-strategy",
+      "supporting_skills": ["craft-social-mystery", "novel-writing"],
+      "owner": "p02-controller",
+      "required_context": ["project registry", "P01 handoff", "current chapter state", "near-field structure"],
+      "forbidden_context": ["whole manuscript by default", "future prose", "other projects", "old chat"],
+      "exit": ["work=completed", "gate=yes/evaluated", "confirmation=confirmed/evaluated", "sync=synced/evaluated"]
+    },
+    "P03": {
+      "capability_id": "CAP-P03-BOOK-LOOP@v001",
+      "route": "p03-whole-book-production",
+      "primary_skill": "novel-project-strategy",
+      "supporting_skills": ["craft-social-mystery", "novel-writing"],
+      "owner": "p03-controller",
+      "required_context": ["project registry", "P02 handoff", "book production state", "declared audit scope"],
+      "forbidden_context": ["whole manuscript unless route requires it", "other projects", "old chat"],
+      "exit": ["work=completed", "gate=yes/evaluated", "confirmation=confirmed/evaluated", "sync=synced/evaluated"]
+    }
+  },
+  "forbidden_inferences": [
+    "file-exists->stage-complete", "generic-done->gate-yes", "confirmation->sync",
+    "P01-complete->P02-complete", "P02-complete->P03-complete", "script-green->content-quality"
+  ]
+}

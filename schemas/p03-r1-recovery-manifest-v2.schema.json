@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/p03-r1-recovery-manifest-v2.schema.json",
+  "title": "P03-R1 Skill-aware Recovery Manifest v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_id", "schema_version", "manifest_version", "epoch", "profile",
+    "registry_binding", "checkpoint_binding", "bootstrap_core",
+    "project_payload_reads", "runtime_required_dependencies", "environment_reads",
+    "forbidden_reads", "load_graph", "context_budget", "semantic_assertions",
+    "read_ledger_contract", "write_policy", "stop_policy", "unique_next", "nonclaims"
+  ],
+  "properties": {
+    "manifest_id": { "type": "string", "pattern": "^RMV2-[A-Z0-9-]+$" },
+    "schema_version": { "const": "s002" },
+    "manifest_version": { "type": "string", "pattern": "^v[0-9]{3}$" },
+    "epoch": { "type": "string", "pattern": "^epoch-[a-z0-9-]+$" },
+    "profile": { "$ref": "#/$defs/profile" },
+    "registry_binding": { "$ref": "#/$defs/registryBinding" },
+    "checkpoint_binding": { "$ref": "#/$defs/checkpointBinding" },
+    "bootstrap_core": { "$ref": "#/$defs/bootstrapCore" },
+    "project_payload_reads": { "type": "array", "items": { "$ref": "#/$defs/resource" }, "uniqueItems": true },
+    "runtime_required_dependencies": { "type": "array", "items": { "$ref": "#/$defs/dependency" }, "uniqueItems": true },
+    "environment_reads": { "type": "array", "items": { "$ref": "#/$defs/resource" }, "uniqueItems": true },
+    "forbidden_reads": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/forbidden" }, "uniqueItems": true },
+    "load_graph": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "$ref": "#/$defs/loadStage" } },
+    "context_budget": { "$ref": "#/$defs/contextBudget" },
+    "semantic_assertions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion" }, "uniqueItems": true },
+    "read_ledger_contract": { "$ref": "#/$defs/ledgerContract" },
+    "write_policy": { "$ref": "#/$defs/writePolicy" },
+    "stop_policy": { "$ref": "#/$defs/stopPolicy" },
+    "unique_next": { "$ref": "#/$defs/uniqueNext" },
+    "nonclaims": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" },
+    "profile": {
+      "type": "object", "additionalProperties": false,
+      "required": ["class", "project_id", "task_ref", "independent_context", "evidence_ceiling", "predecessor_ref"],
+      "properties": {
+        "class": { "enum": ["L6-S", "L6-P"] },
+        "project_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "task_ref": { "type": "string", "minLength": 1 },
+        "independent_context": { "const": true },
+        "evidence_ceiling": { "enum": ["L6-S", "L6-P"] },
+        "predecessor_ref": { "type": ["string", "null"] }
+      }
+    },
+    "registryBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["registry_ref", "sha256", "current_refs"],
+      "properties": {
+        "registry_ref": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "current_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "checkpointBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["checkpoint_ref", "sha256"],
+      "properties": {
+        "checkpoint_ref": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "bootstrapCore": {
+      "type": "object", "additionalProperties": false,
+      "required": ["parse_contract", "schema_ref", "schema_locator", "schema_sha256", "validator_ref", "default_disposition"],
+      "properties": {
+        "parse_contract": { "const": "strict-utf8-json" },
+        "schema_ref": { "const": "P03-R1-RECOVERY-MANIFEST@s002" },
+        "schema_locator": { "type": "string", "minLength": 1 },
+        "schema_sha256": { "$ref": "#/$defs/sha256" },
+        "validator_ref": { "const": "P03-R1-RECOVERY-MANIFEST-VALIDATOR@v001" },
+        "default_disposition": { "const": "fail-closed" }
+      }
+    },
+    "locator": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "base", "value", "authority", "package"],
+      "properties": {
+        "type": { "enum": ["filesystem", "environment-owned", "orchestrator-resource", "custom-resource"] },
+        "base": { "enum": ["manifest-root", "workspace-root", "provider"] },
+        "value": { "type": "string", "minLength": 1 },
+        "authority": { "type": ["string", "null"] },
+        "package": { "type": ["string", "null"] }
+      }
+    },
+    "fingerprint": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "value"],
+      "properties": { "algorithm": { "const": "SHA-256" }, "value": { "$ref": "#/$defs/sha256" } }
+    },
+    "resource": {
+      "type": "object", "additionalProperties": false,
+      "required": ["resource_id", "canonical_identity", "locator", "fingerprint", "bytes", "purpose", "proximity", "origin_dependency_id"],
+      "properties": {
+        "resource_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "canonical_identity": { "type": "string", "minLength": 1 },
+        "locator": { "$ref": "#/$defs/locator" },
+        "fingerprint": { "$ref": "#/$defs/fingerprint" },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "purpose": { "type": "string", "minLength": 1 },
+        "proximity": { "enum": ["near-field", "far-field-structural", "runtime", "environment"] },
+        "origin_dependency_id": { "type": ["string", "null"] }
+      }
+    },
+    "dependency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dependency_id", "identity", "kind", "locator", "main_resource", "requiredness", "condition", "purpose", "version", "fingerprint", "parent_dependency_id", "transitive_resource_ids", "resolved_resource_id"],
+      "properties": {
+        "dependency_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "identity": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["skill-main", "skill-transitive", "protocol", "schema", "tool", "environment-contract"] },
+        "locator": { "$ref": "#/$defs/locator" },
+        "main_resource": { "type": "boolean" },
+        "requiredness": { "enum": ["mandatory", "conditional"] },
+        "condition": { "type": ["string", "null"] },
+        "purpose": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "fingerprint": { "$ref": "#/$defs/fingerprint" },
+        "parent_dependency_id": { "type": ["string", "null"] },
+        "transitive_resource_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" } },
+        "resolved_resource_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" }
+      }
+    },
+    "forbidden": {
+      "type": "object", "additionalProperties": false,
+      "required": ["selector_id", "match", "canonical_identity", "reason"],
+      "properties": {
+        "selector_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "match": { "enum": ["exact", "prefix"] },
+        "canonical_identity": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "loadStage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["stage_id", "order", "depends_on", "resource_ids", "dependency_ids", "mandatory", "owner"],
+      "properties": {
+        "stage_id": { "enum": ["bootstrap", "runtime-dependencies", "project-payload", "state-evidence", "assertions"] },
+        "order": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "depends_on": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "resource_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" } },
+        "dependency_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" } },
+        "mandatory": { "const": true },
+        "owner": { "type": "string", "minLength": 1 }
+      }
+    },
+    "contextBudget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_files", "max_bytes", "max_estimated_tokens", "overflow_disposition"],
+      "properties": {
+        "max_files": { "type": "integer", "minimum": 1 },
+        "max_bytes": { "type": "integer", "minimum": 1 },
+        "max_estimated_tokens": { "type": "integer", "minimum": 1 },
+        "overflow_disposition": { "const": "fail-closed" }
+      }
+    },
+    "assertion": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assertion_id", "owner", "claim", "required_resource_ids", "expected", "nonclaims"],
+      "properties": {
+        "assertion_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "owner": { "type": "string", "minLength": 1 },
+        "claim": { "type": "string", "minLength": 1 },
+        "required_resource_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" } },
+        "expected": { "enum": ["pass", "match", "unique"] },
+        "nonclaims": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "ledgerContract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_fields", "summary_fields", "allowed_formula", "not_read_formula", "over_read_formula", "forbidden_precedence"],
+      "properties": {
+        "record_fields": { "type": "array", "minItems": 9, "uniqueItems": true, "items": { "type": "string" } },
+        "summary_fields": { "type": "array", "minItems": 7, "uniqueItems": true, "items": { "type": "string" } },
+        "allowed_formula": { "const": "(project_payload_reads union environment_reads) minus forbidden_reads" },
+        "not_read_formula": { "const": "allowed_reads minus actual_reads" },
+        "over_read_formula": { "const": "(actual_reads minus allowed_reads) union (actual_reads intersect forbidden_reads)" },
+        "forbidden_precedence": { "const": true }
+      }
+    },
+    "writePolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "allowed_writes"],
+      "properties": { "mode": { "const": "forbidden" }, "allowed_writes": { "type": "array", "maxItems": 0 } }
+    },
+    "stopPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["codes", "no_progress_threshold", "state_grants_on_failure"],
+      "properties": {
+        "codes": { "type": "array", "minItems": 16, "uniqueItems": true, "items": { "type": "string", "pattern": "^RMV2-[A-Z0-9-]+$" } },
+        "no_progress_threshold": { "const": 2 },
+        "state_grants_on_failure": { "type": "array", "maxItems": 0 }
+      }
+    },
+    "uniqueNext": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action", "owner", "scope"],
+      "properties": {
+        "action": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

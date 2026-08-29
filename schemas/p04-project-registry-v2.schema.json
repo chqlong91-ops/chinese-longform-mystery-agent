@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-project-registry-v2.schema.json",
+  "title": "P04 Project Canonical State with Orchestration",
+  "type": "object",
+  "required": ["registry_id", "schema_version", "registry_version", "project", "state", "objects", "current_pointers", "unique_next", "bootstrap", "orchestration"],
+  "properties": {
+    "schema_version": {"const": "P04-PROJECT-REGISTRY-SCHEMA@v002"},
+    "registry_version": {"type": "string", "pattern": "^v[0-9]{3}$"},
+    "orchestration": {
+      "type": "object",
+      "required": ["current_stage", "stages", "signals", "processed_requests", "run_count", "last_checkpoint"],
+      "properties": {
+        "current_stage": {"enum": ["P01", "P02", "P03", "COMPLETE"]},
+        "stages": {"type": "object", "required": ["P01", "P02", "P03"]},
+        "signals": {"type": "object"},
+        "processed_requests": {"type": "array"},
+        "run_count": {"type": "integer", "minimum": 0},
+        "last_checkpoint": {"type": ["object", "null"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/p03-r1-legacy-adapter.schema.json",
+  "title": "P03-R1 Legacy Control Read-only Adapter Inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["inventory_id", "version", "workspace_root", "allowed_roots", "forbidden_selectors", "sources", "stage_claims", "expected_exact_set", "state_ceiling", "nonclaims"],
+  "properties": {
+    "inventory_id": {"const": "P03-R1-LEGACY-INVENTORY@v001"},
+    "version": {"const": "v001"},
+    "workspace_root": {"const": "."},
+    "allowed_roots": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "forbidden_selectors": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "sources": {
+      "type": "array", "minItems": 9, "maxItems": 9,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_id", "phase", "role", "relative_path", "sha256", "bytes", "classification", "expected_tokens", "state_ceiling", "provenance_owner"],
+        "properties": {
+          "source_id": {"type": "string", "pattern": "^LEG-(P01|P02|P03)-(PARENT|OVERVIEW|ACCEPTANCE)$"},
+          "phase": {"enum": ["P01", "P02", "P03"]},
+          "role": {"enum": ["parent", "overview", "acceptance"]},
+          "relative_path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1},
+          "classification": {"const": "historical-evidence"},
+          "expected_tokens": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "state_ceiling": {"const": "historical-only"},
+          "provenance_owner": {"const": "legacy-adapter"}
+        }
+      }
+    },
+    "stage_claims": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["phase", "work", "gate", "baseline", "source_ids", "supports", "does_not_establish"],
+        "properties": {
+          "phase": {"enum": ["P01", "P02", "P03"]},
+          "work": {"enum": ["completed"]},
+          "gate": {"enum": ["yes", "no"]},
+          "baseline": {"enum": ["frozen", "not-created"]},
+          "source_ids": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"type": "string"}},
+          "supports": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "does_not_establish": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        }
+      }
+    },
+    "expected_exact_set": {"type": "array", "minItems": 9, "maxItems": 9, "uniqueItems": true, "items": {"type": "string"}},
+    "state_ceiling": {"const": "historical-reference-only"},
+    "nonclaims": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"type": "string"}}
+  }
+}

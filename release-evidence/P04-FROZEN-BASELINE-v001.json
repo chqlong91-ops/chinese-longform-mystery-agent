@@ -1,0 +1,274 @@
+{
+  "baseline_id": "P04-FROZEN-BASELINE@v001",
+  "stage": "P04",
+  "stage_name": "可执行创作编排与跨项目泛化验证",
+  "status": "frozen/current",
+  "ac_verdict": "12/12 yes/evaluated",
+  "stage_verdict": "yes/evaluated",
+  "product_maturity": "product-grade-beta-candidate / bounded",
+  "task_gates": "P04-S01 through P04-S10 = 10/10 yes/evaluated",
+  "deep_scope": "NOVEL-P04-DEEP-REHOUSING / complete 18-chapter book",
+  "breadth_scope": "NOVEL-P04-BREADTH-LOSTBOX / 12-chapter plan plus CH04-CH07 formal slice",
+  "operating_metrics": {
+    "real_initialization": "2/2",
+    "post_confirmation_auto_closure": "7/7",
+    "tier2_stops": 7,
+    "tier3_stops": 0,
+    "internal_authorization_requests": 0,
+    "l6p": "3/3",
+    "forced_failures": "8/8",
+    "selective_recovery": "8/8",
+    "actual_state_drift": 0,
+    "protocol_forks": 0
+  },
+  "scope_boundary": {
+    "agent_product_control_included": true,
+    "project_truth_sources_included": false,
+    "novel_payload_included": false,
+    "external_release_included": false,
+    "future_stage_included": false
+  },
+  "frozen_inputs": [
+    {
+      "source_ref": "state/p03-r1/baselines/P03-R1-FROZEN-BASELINE_v002/manifest.json",
+      "sha256": "A1F82E7538AB868DB97D86C29291E287A65670D5657B8475FF4DA0859B6D5B38",
+      "evidence_id": "E-S08-BASELINE-V2"
+    },
+    {
+      "source_ref": "work/P04-S01/E10-acceptance-handoff.json",
+      "sha256": "1756CBE53FD71086F826E008C0ECEF92DE1587220F282909EBB836D6BD61DC18",
+      "evidence_id": "E-P04-S01-E10"
+    },
+    {
+      "source_ref": "work/P04-S02/E10-acceptance-handoff.json",
+      "sha256": "C908891D5C55ACDC45CB34C272EDE7028A0669D33A504843251D222FF2DBF672",
+      "evidence_id": "E-P04-S02-E10"
+    },
+    {
+      "source_ref": "work/P04-S03/E10-acceptance-handoff.json",
+      "sha256": "82C686DF534290615AA363DDA73220202C1738A40EE0DECBA5A9E24D9F84F1DD",
+      "evidence_id": "E-P04-S03-E10"
+    },
+    {
+      "source_ref": "work/P04-S04/E10-acceptance-handoff.json",
+      "sha256": "621B986DDB8A3CEB9FE5BDBA3E693A7165E3B9376ECC4174477D487A48A31857",
+      "evidence_id": "E-P04-S04-E10"
+    },
+    {
+      "source_ref": "work/P04-S05/E10-acceptance-handoff.json",
+      "sha256": "853D0B646AF0C141DED5134058FE8E4F7F43FD86C2C73CE25F3E077FD135F99C",
+      "evidence_id": "E-P04-S05-E10"
+    },
+    {
+      "source_ref": "docs/52-P04-S05双试点隔离准入与S06S07移交协议.md",
+      "sha256": "77CF224FE87C87AE142F29FAED1A4A4D6E2F8E2A203653F719FB3C5BCA526B53",
+      "evidence_id": "E-P04-S05-HANDOFF"
+    },
+    {
+      "source_ref": "pilots/p04-deep-rehousing-empty-flat/07-audits/E08-SELECTIVE-REAUDIT-v001.md",
+      "sha256": "45698CF8FCA34BF32B9FEF2FB14975DBB627157C570DCBABF26FED4447B464C1",
+      "evidence_id": "E-P04-S06-E08-REAUDIT"
+    },
+    {
+      "source_ref": "pilots/p04-deep-rehousing-empty-flat/04-state/control/CONF-BOOK-REHOUSING-EMPTY-FLAT-v001.json",
+      "sha256": "C8D8F2A8536284E168A26FAFB09235B83FB253516DDA9D3ACF10978974037070",
+      "evidence_id": "E-P04-S06-E09-CONFIRM"
+    },
+    {
+      "source_ref": "work/P04-S06/E10-s06-complete.json",
+      "sha256": "A97DC3408AFED29896B02E48BBA5A98B7D8D4876245685040AF0A4FB89677003",
+      "evidence_id": "E-P04-S06-E10"
+    },
+    {
+      "source_ref": "work/P04-S06/P04-S06-FROZEN-BASELINE-v001.json",
+      "sha256": "35119EBF007AAF5A64D8A54CB0CB2888EF3758C47D34B5FE3D78B498DC39E3C8",
+      "evidence_id": "E-P04-S06-BASELINE"
+    },
+    {
+      "source_ref": "pilots/p04-deep-rehousing-empty-flat/04-state/project-registry.json",
+      "sha256": "877A325408422814F83E2D5B649CD52C4EDCC5B7FB4671A61E44D24D04CCADB2",
+      "evidence_id": "E-P04-S06-PROJECT-REGISTRY-V012"
+    },
+    {
+      "source_ref": "pilots/p04-breadth-lost-property-sixth-box/06-evidence/SLICE-SYNC-AND-FAIRPLAY-v001.md",
+      "sha256": "3E8A3BE9C80D831651ABE310789213017550ED48FD41E7467552D6C5495A80EE",
+      "evidence_id": "E-P04-S07-E07-AUDIT"
+    },
+    {
+      "source_ref": "pilots/p04-breadth-lost-property-sixth-box/06-evidence/BOUNDARY-AUDIT-CH03-CH08-v001.md",
+      "sha256": "5D144559A0235326697BD6B573AC3E85564EC04BB9BE3473F3D6F60F2DFE7E4F",
+      "evidence_id": "E-P04-S07-E07-BOUNDARY"
+    },
+    {
+      "source_ref": "work/P04-S07/E09-migration-isolation-regression.json",
+      "sha256": "5425AD30271AEC453992FED0419AB374FB36EAB9DFB77B72E4C9048130A0AB7C",
+      "evidence_id": "E-P04-S07-E09"
+    },
+    {
+      "source_ref": "work/P04-S07/E10-acceptance-baseline-handoff.json",
+      "sha256": "BB0813696D7298109BEE968F10372315AF27FA64D9B1184D7B3FF404D5307C43",
+      "evidence_id": "E-P04-S07-E10"
+    },
+    {
+      "source_ref": "pilots/p04-breadth-lost-property-sixth-box/04-state/control/S07-BASELINE-v002.json",
+      "sha256": "5EF087E0DEA99327AB8C45D94B2AF34A640E74DDB4F4D5E0D6E5F08D7EFDDBAA",
+      "evidence_id": "E-P04-S07-BASELINE-V002"
+    },
+    {
+      "source_ref": "pilots/p04-breadth-lost-property-sixth-box/04-state/project-registry.json",
+      "sha256": "0F528C30900B77DD7DFF2B67AC41E49B044344AD28F50BC7C6F43F58575DA28D",
+      "evidence_id": "E-P04-S07-PROJECT-REGISTRY-V011"
+    },
+    {
+      "source_ref": "work/P04-S08/E09-ac08-ac10-production-evidence.json",
+      "sha256": "BC741143B00B3AA1758710362FAA19EBD1A9A195431042AAA47F078237ED4860",
+      "evidence_id": "E-P04-S08-E09"
+    },
+    {
+      "source_ref": "work/P04-S08/E10-task-acceptance-and-handoff.json",
+      "sha256": "CFEF4C2BCE9D6B2F4745917B544199A8DCD14186394A8626AA12C35AC6143BF1",
+      "evidence_id": "E-P04-S08-E10"
+    },
+    {
+      "source_ref": "work/P04-S08/P04-S08-frozen-baseline-v001.json",
+      "sha256": "853F8EEC703C95D1BA7017C3F14D5BDBD56BD33DA07A9BBC16C45FE1645B378C",
+      "evidence_id": "E-P04-S08-BASELINE"
+    },
+    {
+      "source_ref": "work/P04-S09/E03-generalization-matrix.json",
+      "sha256": "3A9EF91EBCDB4EDC9A88B5CDA6F6D3BF6ADF6F8DA72DED7CB67B026E40AB2A3D",
+      "evidence_id": "E-P04-S09-E03"
+    },
+    {
+      "source_ref": "work/P04-S09/E04-runtime-state-generalization-audit.json",
+      "sha256": "D820DE63B939BFF6CA2A00923AE1367F3180424A1BC44368C339B76101D9C313",
+      "evidence_id": "E-P04-S09-E04"
+    },
+    {
+      "source_ref": "work/P04-S09/E05-interaction-ux-metrics.json",
+      "sha256": "B6418452DC3E5B4D2CF87748DFD2E55D9D85F6B0AC5A49545E43D7E1A359D981",
+      "evidence_id": "E-P04-S09-E05"
+    },
+    {
+      "source_ref": "work/P04-S09/E06-recovery-selective-rerun-metrics.json",
+      "sha256": "1F2CAD1621C81C153D923C5AFCBA05250CB459491C62C662A6559D482E49C513",
+      "evidence_id": "E-P04-S09-E06"
+    },
+    {
+      "source_ref": "work/P04-S09/E07-quality-scope-comparison.json",
+      "sha256": "9CDC097D35A4C3D616815086E1E404152892190359AEB27852869867EA5C5C5E",
+      "evidence_id": "E-P04-S09-E07"
+    },
+    {
+      "source_ref": "work/P04-S09/E08-product-experience-audit.json",
+      "sha256": "CB94B11F823CAC21BBBE9C5FB2A8EB190DCFB2310E602823480FFAABC230CEB9",
+      "evidence_id": "E-P04-S09-E08"
+    },
+    {
+      "source_ref": "work/P04-S09/E09-ac06-ac11-maturity-candidate.json",
+      "sha256": "8D67DD906FE1FEC0B7BC7A15001D994A3431465B678FF42F139A2E65826EB200",
+      "evidence_id": "E-P04-S09-E09"
+    },
+    {
+      "source_ref": "work/P04-S09/E10-task-acceptance-handoff.json",
+      "sha256": "0AB64C71662229C2FF03C449CBB39B599E72EB06099BF7D907FA02A50FA80B1B",
+      "evidence_id": "E-P04-S09-E10"
+    },
+    {
+      "source_ref": "work/P04-S09/P04-S09-FROZEN-BASELINE-v001.json",
+      "sha256": "A219D425BBC5B2DDCA982121D69030EA905C02709FE34138A7EBC2DE009012AC",
+      "evidence_id": "E-P04-S09-BASELINE"
+    },
+    {
+      "source_ref": "work/P04-S09/P04-S09-to-S10-handoff-v001.json",
+      "sha256": "690B4852101106D1D8EC04FFB6A76169B3E4A709183B865EBAC643DE9388F8EC",
+      "evidence_id": "E-P04-S09-HANDOFF"
+    },
+    {
+      "source_ref": "docs/59-P04-S10审查与E级任务拆分协议.md",
+      "sha256": "2B2A1C7BB1C464B01A9CF58AC7F8B08F177F42AF74FFCBD97447E1B96F4E1637",
+      "evidence_id": "E-P04-S10-SPLIT"
+    },
+    {
+      "source_ref": "work/P04-S10/S10-review-and-split.json",
+      "sha256": "E9E3867D6182DD3CEDF8C13ED58D860790B147DE8CEAC5A6A02D1651D35BC3D6",
+      "evidence_id": "E-P04-S10-REVIEW"
+    },
+    {
+      "source_ref": "任务/P04-可执行创作编排与跨项目泛化验证/P04-S10-执行任务/任务总览.md",
+      "sha256": "03E39BA970237A2315750605158943E770451C10FFC07AE0BAA5660B485FD434",
+      "evidence_id": "E-P04-S10-TASK-CARDS"
+    },
+    {
+      "source_ref": "work/P04-S10/恢复入口.md",
+      "sha256": "14D129E7F82C2FDDB93D4F4CC5A82EA524A955E8CEAF25DDE062BF6B2383EF4F",
+      "evidence_id": "E-P04-S10-RECOVERY"
+    },
+    {
+      "source_ref": "tools/validate_p04_s10_split.ps1",
+      "sha256": "629CF38E29A6F226EEF5BF360D3B89D59C20FF57530FF2682904F2F00978EB08",
+      "evidence_id": "E-P04-S10-SPLIT-VALIDATOR"
+    },
+    {
+      "source_ref": "work/P04-S10/E01-final-acceptance-contract-exact-set.json",
+      "sha256": "991765A89D673D8F215D38A783B72963A41C0FD77C7974243B68EFBBD08AC1D7",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E02-non-circular-final-evidence-graph.json",
+      "sha256": "D79455E96BD564924A0CF6101F505703044E437178AB780829BC90EB7D2B8A83",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E03-ac01-ac03-verdicts.json",
+      "sha256": "9354F91CE2A9C4AFE901BC2CF954E4B4E8111CED0D1EEDA9C27326B755EC0392",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E04-ac04-ac06-verdicts.json",
+      "sha256": "7CE12F5C241BCB5A8DA440395F25F16921DC005B7E462F5A0540CBAAFA06024B",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E05-ac07-ac10-verdicts.json",
+      "sha256": "5E8B283D79C539F7F410F26EDA59D3D5F041A4789DCC49D5ED4520589C346F9B",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E06-ac11-verdict.json",
+      "sha256": "78B38337CC588EBF4A3EF09ACF8026D6CAFD64E9FA25FF26F8510BBE68ECB452",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E07-ac12-honest-acceptance.json",
+      "sha256": "75A71E5541BE2645514087788A5C408D7758D62220F667660CE0D456FA0DD83E",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E08-closing-integration-regression.json",
+      "sha256": "1E24ADCAA7F51ABE96A12A3B59F74EF99B8A3302A5E3A9B11B2783AAED3D642E",
+      "evidence_id": null
+    },
+    {
+      "source_ref": "work/P04-S10/E09-final-ac-verdict-matrix.json",
+      "sha256": "60F91F55B71F62020F732AB8984ED09C821DC682C962359467AAA92AEC7B6068",
+      "evidence_id": null
+    }
+  ],
+  "limitations": [
+    "real L6-P wall-clock duration unmeasured",
+    "breadth pilot is not a complete second novel",
+    "future genres and configurations remain unproved",
+    "no publication or market claim"
+  ],
+  "nonclaims": [
+    "universal mystery competence",
+    "publication readiness",
+    "legal or copyright conclusion",
+    "breadth full-book completion",
+    "external release",
+    "automatic Tier3 creative decisions",
+    "project truth included in Agent baseline"
+  ],
+  "unique_next": "review next-stage definition"
+}

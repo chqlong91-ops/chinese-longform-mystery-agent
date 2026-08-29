@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-content-confirmation-response.schema.json",
+  "title": "P04 Object-bound Content Confirmation Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["response_id", "project_id", "registry_path", "expected_registry_sha256", "confirmation_token", "object_ref", "object_fingerprint", "scope", "response_type", "user_text"],
+  "properties": {
+    "response_id": {"type": "string", "pattern": "^P04-CONF-[A-Z0-9-]+@v[0-9]{3}$"},
+    "project_id": {"type": "string"},
+    "registry_path": {"type": "string"},
+    "expected_registry_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "confirmation_token": {"type": "string"},
+    "object_ref": {"type": "string"},
+    "object_fingerprint": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "scope": {"type": "string"},
+    "response_type": {"const": "explicit-confirmation"},
+    "user_text": {"type": "string", "minLength": 1}
+  }
+}

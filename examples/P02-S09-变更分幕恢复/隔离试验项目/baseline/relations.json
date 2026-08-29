@@ -1,0 +1,32 @@
+{
+  "graph_id": "IGS-CIR-ISO-01@v001#F-TIME-01",
+  "edges": [
+    {
+      "id": "EDGE-01",
+      "type": "consumes",
+      "source": "F-TIME-01@v002#event",
+      "target": "CONSUMER-LOCAL@v001#time-slot",
+      "dimension_transfer": "design",
+      "required": true,
+      "current": true
+    },
+    {
+      "id": "EDGE-02",
+      "type": "realizes",
+      "source": "CONSUMER-LOCAL@v001#time-slot",
+      "target": "CONSUMER-MR@v001#SC02",
+      "dimension_transfer": "manuscript",
+      "required": true,
+      "current": true
+    },
+    {
+      "id": "EDGE-03",
+      "type": "consumes",
+      "source": "F-TIME-99@v001#other-event",
+      "target": "CONSUMER-UNAFFECTED@v001#CH03",
+      "dimension_transfer": "design",
+      "required": true,
+      "current": true
+    }
+  ]
+}

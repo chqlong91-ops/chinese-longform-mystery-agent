@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-interaction-event.schema.json",
+  "title": "P04 Interaction Telemetry Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "session_id", "sequence", "project_id", "classification", "decision", "owner", "writes", "user_action_required", "authorization_requested", "internal_authorization_request", "checkpoint"],
+  "properties": {
+    "event_id": {"type": "string"},
+    "session_id": {"type": "string"},
+    "sequence": {"type": "integer", "minimum": 1},
+    "project_id": {"type": "string"},
+    "classification": {"enum": ["tier1", "tier2", "tier3", "internal-stop", "terminal", "budget-pause"]},
+    "decision": {"type": "string"},
+    "owner": {"type": "string"},
+    "writes": {"type": "integer", "minimum": 0},
+    "user_action_required": {"type": "boolean"},
+    "authorization_requested": {"type": "boolean"},
+    "internal_authorization_request": {"type": "boolean"},
+    "checkpoint": {"type": ["string", "null"]},
+    "elapsed_ms": {"type": "integer", "minimum": 0}
+  }
+}

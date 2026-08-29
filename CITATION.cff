@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it using this metadata."
+title: "中长篇悬疑小说创作 Agent"
+type: software
+version: "0.4.0-beta"
+date-released: 2026-08-29
+authors:
+  - family-names: "Chen"
+    given-names: "Qianlong"
+    alias: "qianlong.chen"
+abstract: "A recoverable and verifiable Codex workspace agent for Chinese medium- and long-form mystery fiction."
+license: Apache-2.0
+repository-code: "https://github.com/chqlong91-ops/chinese-longform-mystery-agent"
+url: "https://github.com/chqlong91-ops/chinese-longform-mystery-agent"

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-project-registry.schema.json",
+  "title": "P04 Project Canonical State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["registry_id", "schema_version", "registry_version", "project", "coverage", "state", "objects", "current_pointers", "unique_next", "bootstrap"],
+  "properties": {
+    "registry_id": {"type": "string"},
+    "schema_version": {"const": "P04-PROJECT-REGISTRY-SCHEMA@v001"},
+    "registry_version": {"const": "v001"},
+    "project": {
+      "type": "object",
+      "required": ["project_id", "display_name", "slug", "root", "brief"],
+      "properties": {
+        "project_id": {"type": "string"}, "display_name": {"type": "string"}, "slug": {"type": "string"},
+        "root": {"type": "string"}, "brief": {"type": "object"}
+      }
+    },
+    "coverage": {"type": "object", "required": ["included", "excluded"]},
+    "state": {
+      "type": "object",
+      "required": ["work", "confirmation", "sync", "risk", "gate", "lifecycle", "governance_decision"]
+    },
+    "objects": {"type": "array"},
+    "current_pointers": {"type": "array"},
+    "unique_next": {"type": "object", "required": ["action", "owner", "scope", "kind"]},
+    "bootstrap": {"type": "object", "required": ["request_id", "request_fingerprint", "template_version", "exact_set_hash"]}
+  }
+}

@@ -1,0 +1,35 @@
+# Runtime and local state
+state/
+work/
+pilots/
+evals/
+任务/
+*.lock
+*.tmp
+*.candidate.json
+
+# Novel payloads and generated workspaces
+novel-workspaces/
+05-drafts/
+08-manuscript/
+*.docx
+*.pdf
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# PowerShell artifacts
+*.clixml
+*.transcript.txt
+

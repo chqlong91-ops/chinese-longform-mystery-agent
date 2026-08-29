@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-project-bootstrap-manifest.schema.json",
+  "title": "P04 Project Bootstrap Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_id", "request_id", "request_fingerprint", "project_id", "project_root", "template_version", "status", "commit_point", "files", "exact_set_hash"],
+  "properties": {
+    "manifest_id": {"type": "string"}, "request_id": {"type": "string"}, "request_fingerprint": {"type": "string"},
+    "project_id": {"type": "string"}, "project_root": {"type": "string"}, "template_version": {"type": "string"},
+    "status": {"enum": ["committed"]}, "commit_point": {"const": "atomic-directory-rename"},
+    "files": {"type": "array", "items": {"type": "object", "required": ["path", "sha256", "bytes"]}},
+    "exact_set_hash": {"type": "string", "pattern": "^[A-F0-9]{64}$"}
+  }
+}

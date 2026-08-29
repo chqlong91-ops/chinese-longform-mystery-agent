@@ -1,0 +1,22 @@
+{
+  "boundary_id": "BDY-ACT1-ACT2-01@v001#CH02-CH03",
+  "members": ["MS-CH02-FORMAL@v003", "MS-CH03-FORMAL@v001"],
+  "before": {
+    "time": "21:15",
+    "location": "楼道入口",
+    "object_holder": "人物甲",
+    "credential_holder": "人物乙",
+    "clue_state": "visible-ambiguous",
+    "suspect_state": "人物丙-exited-with-residue"
+  },
+  "after": {
+    "time": "21:20",
+    "location": "二层走廊",
+    "object_holder": "人物甲",
+    "credential_holder": "人物乙",
+    "clue_state": "reinterpreted",
+    "suspect_state": "人物丙-exited-with-residue"
+  },
+  "route_duration_minutes": 5,
+  "expected": "clean"
+}

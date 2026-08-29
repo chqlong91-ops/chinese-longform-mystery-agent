@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "P03-R1-ACTION-DECISION-SCHEMA@v001",
+  "type": "object",
+  "required": ["action_id", "in_scope", "reversible", "target_exact"],
+  "properties": {
+    "action_id": {"type": "string", "minLength": 1},
+    "in_scope": {"type": "boolean"},
+    "reversible": {"type": "boolean"},
+    "target_exact": {"type": "boolean"},
+    "safety_blocking": {"type": "boolean", "default": false},
+    "evidence_blocking": {"type": "boolean", "default": false},
+    "source_drift": {"type": "boolean", "default": false},
+    "external_effect": {"type": "boolean", "default": false},
+    "protected_source_write": {"type": "boolean", "default": false},
+    "destructive": {"type": "boolean", "default": false},
+    "new_private_data_scope": {"type": "boolean", "default": false},
+    "independent_agent_l6": {"type": "boolean", "default": false},
+    "synthetic_clean_session": {"type": "boolean", "default": false},
+    "project_payload_read": {"type": "boolean", "default": false},
+    "critical_truth_change": {"type": "boolean", "default": false},
+    "act_structure_or_ending_change": {"type": "boolean", "default": false},
+    "significant_cost_or_risk": {"type": "boolean", "default": false},
+    "candidate_content_confirmation": {"type": "boolean", "default": false},
+    "creative_direction_choice": {"type": "boolean", "default": false},
+    "chapter_content_confirmation": {"type": "boolean", "default": false},
+    "full_book_final_confirmation": {"type": "boolean", "default": false}
+  },
+  "additionalProperties": false
+}

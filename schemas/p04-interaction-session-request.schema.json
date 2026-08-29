@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-interaction-session-request.schema.json",
+  "title": "P04 Interaction Session Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "idempotency_key", "session_id", "project_id", "registry_path", "expected_registry_sha256", "catalog_path", "session_root", "budgets"],
+  "properties": {
+    "request_id": {"type": "string", "pattern": "^P04-IX-[A-Z0-9-]+@v[0-9]{3}$"},
+    "idempotency_key": {"type": "string", "pattern": "^[A-Za-z0-9._-]{8,80}$"},
+    "session_id": {"type": "string", "pattern": "^IXS-[A-Z0-9-]+@v[0-9]{3}$"},
+    "project_id": {"type": "string", "minLength": 1},
+    "registry_path": {"type": "string", "minLength": 1},
+    "expected_registry_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "catalog_path": {"type": "string", "minLength": 1},
+    "session_root": {"type": "string", "minLength": 1},
+    "resume_checkpoint": {"type": ["string", "null"]},
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_steps", "max_writes", "max_elapsed_ms"],
+      "properties": {
+        "max_steps": {"type": "integer", "minimum": 1, "maximum": 100},
+        "max_writes": {"type": "integer", "minimum": 1, "maximum": 100},
+        "max_elapsed_ms": {"type": "integer", "minimum": 1, "maximum": 3600000}
+      }
+    }
+  }
+}

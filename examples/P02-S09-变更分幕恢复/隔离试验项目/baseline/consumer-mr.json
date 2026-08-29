@@ -1,0 +1,8 @@
+{
+  "id": "CONSUMER-MR",
+  "version": "v001",
+  "scope": "SC02",
+  "manuscript_realized": "yes/evaluated",
+  "lifecycle": "current",
+  "source": "CONSUMER-LOCAL@v001#time-slot"
+}

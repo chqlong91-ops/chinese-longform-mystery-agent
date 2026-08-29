@@ -1,0 +1,12 @@
+{
+  "rpm_id": "RPM-CHK-ISO-01@v001#active-run",
+  "allowed_root": ".",
+  "entries": [
+    {"order": 1, "role": "active-state", "path": "project-state.json", "required": true},
+    {"order": 2, "role": "change-seed", "path": "change-seed.json", "required": true},
+    {"order": 3, "role": "relations", "path": "relations.json", "required": true},
+    {"order": 4, "role": "oracle", "path": "recovery-oracle.json", "required": true}
+  ],
+  "explicit_non_grants": ["old-chat", "full-manuscript", "sibling-project", "final-audited"],
+  "unique_next_action": "run-propagation-preflight"
+}

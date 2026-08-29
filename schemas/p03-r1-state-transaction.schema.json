@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/p03-r1-state-transaction.schema.json",
+  "title": "P03-R1 State Transaction Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["transaction_id", "idempotency_key", "epoch", "attempt", "coverage", "authority_owner", "writer_owner", "expected_registry", "proposed_registry", "write_set", "unique_next_expected", "test_injection"],
+  "properties": {
+    "transaction_id": { "type": "string", "pattern": "^TX-[A-Z0-9-]+@v[0-9]{3}$" },
+    "idempotency_key": { "type": "string", "minLength": 12 },
+    "epoch": { "type": "integer", "minimum": 1 },
+    "attempt": { "type": "integer", "minimum": 1 },
+    "coverage": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*(/[a-zA-Z0-9][a-zA-Z0-9-]*)*$" },
+    "authority_owner": { "type": "string", "minLength": 1 },
+    "writer_owner": { "type": "string", "minLength": 1 },
+    "expected_registry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "current_refs"],
+      "properties": {
+        "path": { "$ref": "#/$defs/relativePath" },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "current_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+@v[0-9]{3}$" } }
+      }
+    },
+    "proposed_registry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/relativePath" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "write_set": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "source", "kind", "sha256", "bytes", "mode", "commit_point"],
+        "properties": {
+          "target": { "$ref": "#/$defs/relativePath" },
+          "source": { "$ref": "#/$defs/relativePath" },
+          "kind": { "enum": ["registry", "evidence", "view", "view-manifest"] },
+          "sha256": { "$ref": "#/$defs/sha256" },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "mode": { "enum": ["create", "replace"] },
+          "commit_point": { "type": "boolean" }
+        }
+      }
+    },
+    "unique_next_expected": { "type": "string", "minLength": 1 },
+    "test_injection": { "type": ["string", "null"], "enum": [null, "after-lease", "after-stage", "after-bundle", "before-registry", "after-registry"] }
+  },
+  "$defs": {
+    "relativePath": { "type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+$" },
+    "sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" }
+  }
+}

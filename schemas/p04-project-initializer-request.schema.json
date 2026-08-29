@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-project-initializer-request.schema.json",
+  "title": "P04 Project Initializer Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "idempotency_key", "project_id", "display_name", "slug", "output_root", "template_version", "brief"],
+  "properties": {
+    "request_id": {"type": "string", "pattern": "^P04-INIT-[A-Z0-9-]+@v[0-9]{3}$"},
+    "idempotency_key": {"type": "string", "pattern": "^[A-Za-z0-9._-]{8,80}$"},
+    "project_id": {"type": "string", "pattern": "^NOVEL-[A-Z0-9-]{3,48}$"},
+    "display_name": {"type": "string", "minLength": 1, "maxLength": 80},
+    "slug": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,47}$"},
+    "output_root": {"type": "string", "minLength": 1},
+    "template_version": {"const": "P04-PROJECT-TEMPLATE@v001"},
+    "brief": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed", "target_length", "mystery_mode"],
+      "properties": {
+        "seed": {"type": "string", "minLength": 1, "maxLength": 300},
+        "target_length": {"enum": ["medium", "long"]},
+        "mystery_mode": {"type": "string", "minLength": 1, "maxLength": 80},
+        "notes": {"type": "string", "maxLength": 500}
+      }
+    }
+  }
+}

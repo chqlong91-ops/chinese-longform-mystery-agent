@@ -1,0 +1,45 @@
+{
+  "manifest_id": "PUBLIC-RELEASE-MANIFEST@v001",
+  "product": "中长篇悬疑小说创作 Agent",
+  "version": "0.4.0-beta",
+  "author": "qianlong.chen",
+  "repository": {
+    "owner": "chqlong91-ops",
+    "name": "chinese-longform-mystery-agent",
+    "url": "https://github.com/chqlong91-ops/chinese-longform-mystery-agent",
+    "visibility": "public"
+  },
+  "source_baseline": "P04-FROZEN-BASELINE@v001",
+  "maturity": "product-grade-beta-candidate / bounded",
+  "included": [
+    "AGENTS.md and public product documentation",
+    "P01-P04 public protocols and acceptance summaries",
+    "project and workflow templates",
+    "JSON schemas",
+    "deterministic initialization, orchestration, state and recovery tools",
+    "non-manuscript examples",
+    "release validation and smoke tests",
+    "GitHub workflow and community files"
+  ],
+  "excluded": [
+    "pilot novel prose and manuscripts",
+    "candidate, formal and protected source payloads",
+    "private project truth and project registries",
+    "development work records and task cards",
+    "transaction journals and generated state history",
+    "external research caches",
+    "third-party or separately licensed skills",
+    "credentials and local absolute paths"
+  ],
+  "license": {
+    "status": "selected/current",
+    "spdx": "Apache-2.0",
+    "file": "LICENSE"
+  },
+  "external_release_performed": true,
+  "published_at": "2026-08-29",
+  "validation": [
+    "tools/validate-release.ps1",
+    "tests/smoke.ps1"
+  ]
+}

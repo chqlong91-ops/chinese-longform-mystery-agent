@@ -1,0 +1,25 @@
+name: Validate release package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show PowerShell version
+        shell: pwsh
+        run: $PSVersionTable.PSVersion.ToString()
+      - name: Validate release boundary
+        shell: pwsh
+        run: ./tools/validate-release.ps1
+      - name: Run smoke test
+        shell: pwsh
+        run: ./tests/smoke.ps1
+

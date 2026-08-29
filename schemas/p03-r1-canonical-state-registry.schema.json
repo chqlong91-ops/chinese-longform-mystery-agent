@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/p03-r1-canonical-state-registry.schema.json",
+  "title": "P03-R1 Canonical State Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "registry_id",
+    "schema_version",
+    "registry_version",
+    "coverage",
+    "objects",
+    "current_pointers",
+    "evidence",
+    "relations",
+    "transition_intents",
+    "registry_state",
+    "unique_next",
+    "nonclaims"
+  ],
+  "properties": {
+    "registry_id": { "type": "string", "pattern": "^CSR-[A-Z0-9-]+$" },
+    "schema_version": { "const": "s001" },
+    "registry_version": { "type": "string", "pattern": "^v[0-9]{3}$" },
+    "coverage": { "$ref": "#/$defs/coverage" },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/objectRecord" }
+    },
+    "current_pointers": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/currentPointer" }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidenceRecord" }
+    },
+    "relations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationRecord" }
+    },
+    "transition_intents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/transitionIntent" }
+    },
+    "registry_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lifecycle", "evaluation", "owner", "stop_code"],
+      "properties": {
+        "lifecycle": { "enum": ["candidate", "current", "historical", "stale", "quarantined", "retired"] },
+        "evaluation": { "enum": ["evaluated", "not-evaluated", "not-applicable"] },
+        "owner": { "type": "string", "minLength": 1 },
+        "stop_code": { "type": ["string", "null"] }
+      }
+    },
+    "unique_next": { "$ref": "#/$defs/uniqueNext" },
+    "nonclaims": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "scope": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*(/[a-zA-Z0-9][a-zA-Z0-9-]*)*$"
+    },
+    "objectRef": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9-]+@v[0-9]{3}$"
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included", "excluded", "prefix_policy", "migration_pending"],
+      "properties": {
+        "included": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/scope" } },
+        "excluded": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/scope" } },
+        "prefix_policy": { "enum": ["exact-only", "declared-prefix"] },
+        "migration_pending": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "stateClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evaluation", "owner", "scope", "evidence_refs", "updated_by_intent", "non_implications"],
+      "properties": {
+        "value": { "type": "string", "minLength": 1 },
+        "evaluation": { "enum": ["evaluated", "not-evaluated", "not-applicable"] },
+        "owner": { "type": "string", "minLength": 1 },
+        "scope": { "$ref": "#/$defs/scope" },
+        "evidence_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "updated_by_intent": { "type": ["string", "null"] },
+        "non_implications": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "stateSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work", "confirmation", "sync", "risk", "gate", "governance_decision"],
+      "properties": {
+        "work": { "$ref": "#/$defs/stateClaim" },
+        "confirmation": { "$ref": "#/$defs/stateClaim" },
+        "sync": { "$ref": "#/$defs/stateClaim" },
+        "risk": { "$ref": "#/$defs/stateClaim" },
+        "gate": { "$ref": "#/$defs/stateClaim" },
+        "governance_decision": { "$ref": "#/$defs/stateClaim" }
+      }
+    },
+    "ownerSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority_owner", "state_owner", "evidence_owner", "next_owner"],
+      "properties": {
+        "authority_owner": { "type": "string", "minLength": 1 },
+        "state_owner": { "type": "string", "minLength": 1 },
+        "evidence_owner": { "type": "string", "minLength": 1 },
+        "next_owner": { "type": "string", "minLength": 1 }
+      }
+    },
+    "objectRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["namespace", "object_type", "object_id", "object_ref", "version", "record_revision", "scope", "lifecycle", "predecessor_ref", "owners", "states", "evidence_refs", "relation_refs", "nonclaims"],
+      "properties": {
+        "namespace": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "object_type": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "object_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "object_ref": { "$ref": "#/$defs/objectRef" },
+        "version": { "type": "string", "pattern": "^v[0-9]{3}$" },
+        "record_revision": { "type": "string", "pattern": "^r[0-9]{3}$" },
+        "scope": { "$ref": "#/$defs/scope" },
+        "lifecycle": { "enum": ["candidate", "current", "historical", "stale", "quarantined", "retired"] },
+        "predecessor_ref": { "oneOf": [{ "$ref": "#/$defs/objectRef" }, { "type": "null" }] },
+        "owners": { "$ref": "#/$defs/ownerSet" },
+        "states": { "$ref": "#/$defs/stateSet" },
+        "evidence_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "relation_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "nonclaims": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "currentPointer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pointer_key", "namespace", "object_type", "scope", "object_ref"],
+      "properties": {
+        "pointer_key": { "type": "string", "minLength": 1 },
+        "namespace": { "type": "string", "minLength": 1 },
+        "object_type": { "type": "string", "minLength": 1 },
+        "scope": { "$ref": "#/$defs/scope" },
+        "object_ref": { "$ref": "#/$defs/objectRef" }
+      }
+    },
+    "evidenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "kind", "source_ref", "source_fingerprint", "scope", "supports", "does_not_establish", "owner", "status"],
+      "properties": {
+        "evidence_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "kind": { "enum": ["protocol", "acceptance", "validation", "activation", "handoff", "synthetic"] },
+        "source_ref": { "type": "string", "minLength": 1 },
+        "source_fingerprint": { "type": "string", "pattern": "^[A-F0-9]{64}$" },
+        "scope": { "$ref": "#/$defs/scope" },
+        "supports": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "does_not_establish": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "owner": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["current", "historical-valid", "stale", "invalid", "quarantined"] }
+      }
+    },
+    "relationRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relation_id", "source_ref", "target_ref", "relation_type", "scope", "dimension", "required", "evidence_refs", "status"],
+      "properties": {
+        "relation_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "source_ref": { "$ref": "#/$defs/objectRef" },
+        "target_ref": { "$ref": "#/$defs/objectRef" },
+        "relation_type": { "enum": ["predecessor", "supersedes", "depends-on", "derived-from", "invalidates", "preserves", "view-of"] },
+        "scope": { "$ref": "#/$defs/scope" },
+        "dimension": { "enum": ["identity", "work", "confirmation", "sync", "risk", "gate", "lifecycle", "governance", "next"] },
+        "required": { "type": "boolean" },
+        "evidence_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "status": { "enum": ["current", "historical", "stale", "invalid", "quarantined"] }
+      }
+    },
+    "transitionIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intent_id", "idempotency_key", "target_pointer_key", "expected_current_ref", "proposed_current_ref", "preconditions", "affected_dimensions", "evidence_refs", "status", "next"],
+      "properties": {
+        "intent_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9-]+$" },
+        "idempotency_key": { "type": "string", "minLength": 8 },
+        "target_pointer_key": { "type": "string", "minLength": 1 },
+        "expected_current_ref": { "oneOf": [{ "$ref": "#/$defs/objectRef" }, { "type": "null" }] },
+        "proposed_current_ref": { "$ref": "#/$defs/objectRef" },
+        "preconditions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "affected_dimensions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "evidence_refs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "status": { "enum": ["proposed", "preflight-passed", "blocked", "consumed", "superseded"] },
+        "next": { "type": "string", "minLength": 1 }
+      }
+    },
+    "uniqueNext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "action", "owner", "scope", "remedy"],
+      "properties": {
+        "kind": { "enum": ["action", "blocked"] },
+        "action": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 },
+        "scope": { "$ref": "#/$defs/scope" },
+        "remedy": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

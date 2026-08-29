@@ -1,0 +1,8 @@
+{
+  "id": "CONSUMER-LOCAL",
+  "version": "v001",
+  "scope": "time-slot",
+  "time": "21:00",
+  "design_evaluation": "current",
+  "source": "F-TIME-01@v001#event"
+}

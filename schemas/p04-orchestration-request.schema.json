@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p04-orchestration-request.schema.json",
+  "title": "P04 Orchestration Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id", "idempotency_key", "project_id", "registry_path", "expected_registry_sha256", "mode"],
+  "properties": {
+    "request_id": {"type": "string", "pattern": "^P04-ORCH-[A-Z0-9-]+@v[0-9]{3}$"},
+    "idempotency_key": {"type": "string", "pattern": "^[A-Za-z0-9._-]{8,80}$"},
+    "project_id": {"type": "string"},
+    "registry_path": {"type": "string"},
+    "expected_registry_sha256": {"type": "string", "pattern": "^[A-F0-9]{64}$"},
+    "mode": {"enum": ["route-only", "apply-adapter-result"]},
+    "adapter_result": {
+      "type": ["object", "null"],
+      "properties": {
+        "capability_id": {"type": "string"},
+        "outcome": {"enum": ["success", "research-blocked", "tier2-pending", "tier3-pending", "failed"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "stage_exit_ready": {"type": "boolean"}
+      }
+    }
+  }
+}
