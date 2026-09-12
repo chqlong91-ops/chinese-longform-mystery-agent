@@ -2,7 +2,7 @@
 
 一个面向中文中篇与长篇悬疑小说的 Codex 工作区 Agent。它把故事种子推进为可验证、可恢复、状态一致的完整小说，并将案件设计、章节生产、长程连续性、整书审计与用户确认分成清晰的闭环。
 
-- 当前版本：`0.4.0-beta`
+- 当前版本：`0.5.0-beta`
 - 成熟度：`product-grade-beta-candidate / bounded`
 - 作者：`qianlong.chen`
 - GitHub：[`chqlong91-ops/chinese-longform-mystery-agent`](https://github.com/chqlong91-ops/chinese-longform-mystery-agent)
@@ -22,6 +22,8 @@
 P04 的冻结验收为 `12/12 yes/evaluated`。验证范围包括一部 18 章完整深度试点，以及一个 12 章全书计划加 4 章正式切片的异质广度试点。详见 [阶段验收报告](docs/60-P04阶段验收报告与产品交接.md)。
 
 ## 这是什么
+
+`0.5.0-beta` 同步按需装载、单主路由、连续执行与验证复用规则，补齐控制工作流，并声明外部 Skill 的兼容要求。已有用户见 [升级说明](docs/UPGRADING-0.5.0-beta.md)。本次增量检查独立于上述 P04 历史冻结验收。
 
 这是一个 Codex 工作区 Agent 套件，不是脱离 Codex 独立运行的自动写小说程序。根目录 `AGENTS.md` 提供持续生效的项目规则；PowerShell 工具负责确定性的初始化、状态、事务和恢复；专业 Skill 负责悬疑设计、长篇治理与正文创作。
 
@@ -89,6 +91,7 @@ pwsh -NoProfile -File .\scripts\show-next-step.ps1 `
 - `examples/`：不含正式小说载荷的结构示例。
 - `tests/`：公开包冒烟与发布边界测试。
 - `release-evidence/`：P04 冻结基线和发布范围说明。
+- 当前发行范围：[v002 发布清单](release-evidence/PUBLIC-RELEASE-MANIFEST-v002.json)。
 
 ## 验证
 
@@ -98,6 +101,8 @@ pwsh -NoProfile -File .\tests\smoke.ps1
 ```
 
 GitHub Actions 会在 Windows runner 上运行同一组检查。
+
+发布验证器的缺失文件、断链和版本不一致回归检查：`pwsh -NoProfile -File ./tests/release-validator.ps1`。
 
 ## 明确限制
 

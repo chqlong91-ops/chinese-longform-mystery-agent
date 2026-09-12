@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this project, please cite it using this metadata."
 title: "中长篇悬疑小说创作 Agent"
 type: software
-version: "0.4.0-beta"
-date-released: 2026-08-29
+version: "0.5.0-beta"
+date-released: 2026-09-12
 authors:
   - family-names: "Chen"
     given-names: "Qianlong"

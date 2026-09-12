@@ -1,0 +1,41 @@
+{
+  "manifest_id": "PUBLIC-RELEASE-MANIFEST@v002",
+  "predecessor": "PUBLIC-RELEASE-MANIFEST@v001",
+  "product": "中长篇悬疑小说创作 Agent",
+  "version": "0.5.0-beta",
+  "author": "qianlong.chen",
+  "repository": {
+    "owner": "chqlong91-ops",
+    "name": "chinese-longform-mystery-agent",
+    "url": "https://github.com/chqlong91-ops/chinese-longform-mystery-agent",
+    "visibility": "public"
+  },
+  "source_baseline": "P04-FROZEN-BASELINE@v001",
+  "maturity": "product-grade-beta-candidate / bounded",
+  "included": [
+    "public Agent rules and runtime/control workflow guides",
+    "P01-P04 protocols, templates, schemas and deterministic tools",
+    "non-manuscript examples and historical acceptance summaries",
+    "release validation, smoke tests and external Skill reference fingerprints"
+  ],
+  "excluded": [
+    "novel prose, candidates, formal and protected source payloads",
+    "private project state, development tasks and transaction journals",
+    "external research caches, credentials and local paths",
+    "separately licensed Skill contents"
+  ],
+  "license": {
+    "spdx": "Apache-2.0",
+    "file": "LICENSE"
+  },
+  "tag": "v0.5.0-beta",
+  "prepared_at": "2026-09-12",
+  "publication_status_source": "https://github.com/chqlong91-ops/chinese-longform-mystery-agent/releases/tag/v0.5.0-beta",
+  "validation": [
+    "tools/validate-release.ps1",
+    "tests/smoke.ps1",
+    "tests/release-validator.ps1"
+  ],
+  "validation_scope": "Package integrity, synthetic smoke and runtime instruction review; no new full-novel trial. This manifest describes release contents, not proof of external publication.",
+  "external_skill_reference": "release-evidence/EXTERNAL-SKILLS-REFERENCE-v001.json"
+}

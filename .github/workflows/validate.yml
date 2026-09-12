@@ -22,4 +22,6 @@ jobs:
       - name: Run smoke test
         shell: pwsh
         run: ./tests/smoke.ps1
-
+      - name: Test release validator failure cases
+        shell: pwsh
+        run: ./tests/release-validator.ps1

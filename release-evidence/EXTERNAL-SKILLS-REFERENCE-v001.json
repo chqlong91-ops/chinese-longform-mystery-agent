@@ -1,0 +1,99 @@
+{
+  "snapshot_id": "EXTERNAL-SKILLS-REFERENCE@v001",
+  "captured_at": "2026-09-12",
+  "product_version": "0.5.0-beta",
+  "purpose": "Reference fingerprints only; no skill contents redistributed. Different bytes require semantic compatibility review, not automatic rejection.",
+  "skills": [
+    {
+      "name": "craft-social-mystery",
+      "files": [
+        {
+          "path": "references/audits.md",
+          "sha256": "b74a2aa3314d772faec5768042de1366b9a412bca4248d8504581913aec645a3"
+        },
+        {
+          "path": "references/mechanism-catalog.md",
+          "sha256": "7b803f9b2ff6619dd57b56f9f145e5fb491587901d96c6e3c4b9a6130acccb5a"
+        },
+        {
+          "path": "references/production-gates.md",
+          "sha256": "3e48ca815e6ff82c0f2b56e11f2135d1323245daf542104a4ff772f194f33028"
+        },
+        {
+          "path": "references/prose-handoff.md",
+          "sha256": "07265b7a550e8d6fdb872527443b16552eaaebd10d8fb9abea41b284711cdd7b"
+        },
+        {
+          "path": "references/templates.md",
+          "sha256": "1a598baeaf34990685efb83536da2f0005f1def33360f62179b5e69403ddbb94"
+        },
+        {
+          "path": "references/truth-first-workflow.md",
+          "sha256": "0deca468fa2cd2785b7b934e4f283de3c1f3ef4def3f28302500c1372b920a1a"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "fd9394411a77fe15943d75d1ddc6ed01a044ce6b7a2073ebb17ebeb5b9ad5ccc"
+        }
+      ]
+    },
+    {
+      "name": "novel-project-strategy",
+      "files": [
+        {
+          "path": "references/LONGFORM_PROJECT_WORK_STRATEGY.md",
+          "sha256": "23c393483bcdf620f9536bc32362e137f69cd5d2ec5c2c480650a309274b9e4a"
+        },
+        {
+          "path": "references/SKILL_COORDINATION.md",
+          "sha256": "68229e0365936aedae555168dea7e5d8759b227f7ed50080fff5967e1f3b6e49"
+        },
+        {
+          "path": "references/STATE_AND_SYNC_MODEL.md",
+          "sha256": "7b329bbff90481392d749622b1472bfc71c4666547108b7e45353c5c723607e0"
+        },
+        {
+          "path": "references/WORKSPACE_BOOTSTRAP_TEMPLATE.md",
+          "sha256": "40ddad7159bdf3023c89cf13b5c5fcab970d3d1400b4f3f920120ae584e5f0c8"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "6b0bd80c79e293603d4e845478d9319bcbd9ad33c0bdc5dd00a76c3f0dc3ea98"
+        }
+      ]
+    },
+    {
+      "name": "novel-writing",
+      "files": [
+        {
+          "path": "references/character-introductions.md",
+          "sha256": "626a4f440458c5a8e7787c401e44f513cf8d2920b284846f50a68ff37093e9f0"
+        },
+        {
+          "path": "references/planning.md",
+          "sha256": "c9a7b1198b07cb3efbb031f276fa21444bd43afbfd8c486331ed182652a55d7c"
+        },
+        {
+          "path": "references/realism-constraints.md",
+          "sha256": "04ef603caf4c575dec694290f7f1cf9c87c203454cd0f5dab43593be715fc8e2"
+        },
+        {
+          "path": "references/revision-checklist.md",
+          "sha256": "85479c284655991300a8262c27855dab9d0f36aab342cf160afbfbaac90f4f67"
+        },
+        {
+          "path": "references/scene-and-structure.md",
+          "sha256": "7f3b935335e5d97dbecca123b5b5ad70beb14e7d3e48427c14d86057e6e07fa4"
+        },
+        {
+          "path": "references/style-fidelity.md",
+          "sha256": "8034fe900cc17d5b9856bcbd53b5f1df3edb3d43e0cd13b55286a91aa9a2e6b3"
+        },
+        {
+          "path": "SKILL.md",
+          "sha256": "59d2cb7f75731989ea9b24c062fb29194773eb62eb980659c55d377467a3cc0f"
+        }
+      ]
+    }
+  ]
+}
